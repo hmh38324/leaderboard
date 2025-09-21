@@ -201,6 +201,7 @@ header p {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    width: 100%;
 }
 
 .leaderboard-item:hover {
@@ -230,9 +231,9 @@ header p {
     font-size: 2rem;
     font-weight: bold;
     color: #667eea;
-    margin-right: 20px;
-    min-width: 60px;
+    width: 20%;
     text-align: center;
+    flex-shrink: 0;
 }
 
 .rank-1 .rank-number {
@@ -248,10 +249,12 @@ header p {
 }
 
 .player-info {
-    flex: 1;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 0 10px;
+    flex-shrink: 0;
 }
 
 .player-name {
@@ -268,10 +271,12 @@ header p {
 }
 
 .score-info {
+    width: 30%;
     text-align: right;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    flex-shrink: 0;
 }
 
 .total-score {
@@ -625,31 +630,29 @@ header p {
         padding: 15px;
         flex-direction: row;
         align-items: center;
-        gap: 12px;
+        gap: 0;
     }
     
     .rank-number {
         font-size: 1.6rem;
-        margin-right: 12px;
-        margin-bottom: 0;
-        min-width: 45px;
+        width: 20%;
         text-align: center;
+        flex-shrink: 0;
     }
     
     .player-info {
-        flex: 1;
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
+        width: 50%;
+        padding: 0 8px;
+        flex-shrink: 0;
     }
     
     .score-info {
+        width: 30%;
         text-align: right;
         flex-direction: column;
         align-items: flex-end;
         gap: 6px;
-        min-width: 70px;
+        flex-shrink: 0;
     }
     
     .total-score {
@@ -709,12 +712,17 @@ header p {
     
     .leaderboard-item {
         padding: 12px;
-        gap: 10px;
+        gap: 0;
     }
     
     .rank-number {
         font-size: 1.4rem;
-        min-width: 35px;
+        width: 20%;
+    }
+    
+    .player-info {
+        width: 50%;
+        padding: 0 6px;
     }
     
     .player-name {
@@ -731,7 +739,7 @@ header p {
     }
     
     .score-info {
-        min-width: 60px;
+        width: 30%;
         gap: 4px;
     }
 }
