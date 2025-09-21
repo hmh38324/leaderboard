@@ -126,6 +126,15 @@ header p {
     justify-content: center;
 }
 
+/* 移动端强制单行显示 */
+@media (max-width: 768px) {
+    .game-selector {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
 .game-tab {
     background: white;
     border: 2px solid #e1e5e9;
@@ -582,13 +591,14 @@ header p {
     }
     
     .game-selector {
-        gap: 4px;
+        gap: 3px;
         flex-wrap: nowrap;
         overflow-x: auto;
         padding: 5px 0;
         -webkit-overflow-scrolling: touch;
         position: relative;
         justify-content: flex-start;
+        display: flex;
     }
     
     .game-selector::after {
@@ -604,11 +614,12 @@ header p {
     }
     
     .game-tab {
-        padding: 6px 10px;
-        font-size: 0.7rem;
+        padding: 5px 8px;
+        font-size: 0.65rem;
         white-space: nowrap;
         flex-shrink: 0;
         min-width: fit-content;
+        border-radius: 20px;
     }
     
     .leaderboard-container {
@@ -689,13 +700,14 @@ header p {
     }
     
     .game-selector {
-        gap: 3px;
+        gap: 2px;
         padding: 3px 0;
     }
     
     .game-tab {
-        padding: 5px 8px;
-        font-size: 0.65rem;
+        padding: 4px 6px;
+        font-size: 0.6rem;
+        border-radius: 18px;
     }
     
     .leaderboard-item {
