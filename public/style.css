@@ -649,11 +649,13 @@ header p {
         flex-direction: column;
         align-items: flex-end;
         gap: 6px;
-        min-width: 70px;
+        min-width: 80px;
+        order: 3;
     }
     
     .total-score {
         font-size: 1.5rem;
+        margin-bottom: 4px;
     }
     
     .game-scores {
@@ -723,6 +725,7 @@ header p {
     
     .total-score {
         font-size: 1.3rem;
+        margin-bottom: 3px;
     }
     
     .game-score {
@@ -733,6 +736,7 @@ header p {
     .score-info {
         min-width: 60px;
         gap: 4px;
+        order: 3;
     }
 }
 
