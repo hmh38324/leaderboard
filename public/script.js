@@ -21,7 +21,6 @@ const loading = document.getElementById('loading');
 const message = document.getElementById('message');
 const totalParticipants = document.getElementById('totalParticipants');
 const totalSubmissions = document.getElementById('totalSubmissions');
-const totalScore = document.getElementById('totalScore');
 const leaderboardTitle = document.getElementById('leaderboardTitle');
 const leaderboardCount = document.getElementById('leaderboardCount');
 const leaderboardList = document.getElementById('leaderboardList');
@@ -233,11 +232,9 @@ function displayLeaderboard(data) {
 function updateStats() {
     const totalPlayers = leaderboardData.length;
     const totalSubmissionsCount = allScores.length;
-    const totalScoreSum = allScores.reduce((sum, score) => sum + score.score, 0);
     
     totalParticipants.textContent = totalPlayers;
     totalSubmissions.textContent = totalSubmissionsCount;
-    totalScore.textContent = totalScoreSum;
 }
 
 // 显示玩家详情
