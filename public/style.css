@@ -582,12 +582,13 @@ header p {
     }
     
     .game-selector {
-        gap: 6px;
+        gap: 4px;
         flex-wrap: nowrap;
         overflow-x: auto;
         padding: 5px 0;
         -webkit-overflow-scrolling: touch;
         position: relative;
+        justify-content: flex-start;
     }
     
     .game-selector::after {
@@ -603,8 +604,8 @@ header p {
     }
     
     .game-tab {
-        padding: 8px 12px;
-        font-size: 0.75rem;
+        padding: 6px 10px;
+        font-size: 0.7rem;
         white-space: nowrap;
         flex-shrink: 0;
         min-width: fit-content;
@@ -618,28 +619,31 @@ header p {
         padding: 15px;
         flex-direction: row;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
     }
     
     .rank-number {
-        font-size: 1.8rem;
-        margin-right: 15px;
+        font-size: 1.6rem;
+        margin-right: 12px;
         margin-bottom: 0;
-        min-width: 50px;
+        min-width: 45px;
         text-align: center;
     }
     
     .player-info {
         flex: 1;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
     }
     
     .score-info {
         text-align: right;
         flex-direction: column;
         align-items: flex-end;
-        gap: 8px;
-        min-width: 80px;
+        gap: 6px;
+        min-width: 70px;
     }
     
     .total-score {
@@ -649,12 +653,12 @@ header p {
     .game-scores {
         justify-content: flex-end;
         flex-wrap: wrap;
-        gap: 4px;
+        gap: 3px;
     }
     
     .game-score {
-        font-size: 0.7rem;
-        padding: 3px 6px;
+        font-size: 0.65rem;
+        padding: 2px 5px;
     }
     
     .header-buttons {
@@ -685,27 +689,27 @@ header p {
     }
     
     .game-selector {
-        gap: 4px;
+        gap: 3px;
         padding: 3px 0;
     }
     
     .game-tab {
-        padding: 6px 10px;
-        font-size: 0.7rem;
+        padding: 5px 8px;
+        font-size: 0.65rem;
     }
     
     .leaderboard-item {
         padding: 12px;
-        gap: 12px;
+        gap: 10px;
     }
     
     .rank-number {
-        font-size: 1.5rem;
-        min-width: 40px;
+        font-size: 1.4rem;
+        min-width: 35px;
     }
     
     .player-name {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .total-score {
@@ -718,7 +722,7 @@ header p {
     }
     
     .score-info {
-        min-width: 70px;
-        gap: 6px;
+        min-width: 60px;
+        gap: 4px;
     }
 }
