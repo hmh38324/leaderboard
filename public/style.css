@@ -73,12 +73,9 @@ header p {
 /* 统计概览 */
 .stats-overview {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .stat-card {
@@ -127,15 +124,6 @@ header p {
     margin-bottom: 30px;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-/* 移动端强制单行显示 */
-@media (max-width: 768px) {
-    .game-selector {
-        flex-wrap: nowrap !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
 }
 
 .game-tab {
@@ -577,9 +565,8 @@ header p {
     }
     
     .stats-overview {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: 15px;
-        max-width: 100%;
     }
     
     .stat-card {
@@ -602,7 +589,6 @@ header p {
         -webkit-overflow-scrolling: touch;
         position: relative;
         justify-content: flex-start;
-        display: flex;
     }
     
     .game-selector::after {
@@ -623,7 +609,6 @@ header p {
         white-space: nowrap;
         flex-shrink: 0;
         min-width: fit-content;
-        border-radius: 20px;
     }
     
     .leaderboard-container {
@@ -711,7 +696,6 @@ header p {
     .game-tab {
         padding: 4px 6px;
         font-size: 0.6rem;
-        border-radius: 18px;
     }
     
     .leaderboard-item {
@@ -740,5 +724,22 @@ header p {
     .score-info {
         min-width: 60px;
         gap: 4px;
+    }
+}
+
+/* 超小屏幕优化 (320px以下) */
+@media (max-width: 360px) {
+    .game-selector {
+        gap: 1px;
+        padding: 2px 0;
+    }
+    
+    .game-tab {
+        padding: 3px 5px;
+        font-size: 0.55rem;
+    }
+    
+    .container {
+        padding: 10px;
     }
 }
