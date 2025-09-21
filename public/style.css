@@ -723,6 +723,11 @@ header p {
     
     .player-name {
         font-size: 0.95rem;
+        text-align: center;
+    }
+    
+    .player-id {
+        text-align: center;
     }
     
     .total-score {
