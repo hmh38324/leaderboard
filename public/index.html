@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游园活动排行榜</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="游园活动四个游戏的总分排行榜">
+    <meta name="keywords" content="排行榜,游园活动,积分,游戏">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header>
+            <h1>🏆 游园活动排行榜</h1>
+            <p>四个游戏总分排行榜</p>
+            <div class="header-buttons">
+                <button class="refresh-btn" onclick="refreshLeaderboard()">🔄 刷新</button>
+            </div>
+        </header>
+
+        <!-- 加载状态 -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>正在加载排行榜数据...</p>
+        </div>
+
+        <!-- 消息提示 -->
+        <div id="message" class="message hidden"></div>
+
+        <!-- 总体统计 -->
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <div class="stat-number" id="totalParticipants">-</div>
+                    <div class="stat-label">参与人数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-content">
+                    <div class="stat-number" id="totalSubmissions">-</div>
+                    <div class="stat-label">总提交次数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-content">
+                    <div class="stat-number" id="totalScore">-</div>
+                    <div class="stat-label">总积分</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏选择器 -->
+        <div class="game-selector">
+            <button class="game-tab active" data-game="all">全部游戏</button>
+            <button class="game-tab" data-game="1">⚡ 拼速达人</button>
+            <button class="game-tab" data-game="2">🚗 碰碰乐</button>
+            <button class="game-tab" data-game="3">🎯 沙包投掷</button>
+            <button class="game-tab" data-game="4">🥢 巧手取棒</button>
+        </div>
+
+        <!-- 排行榜内容 -->
+        <div class="leaderboard-container">
+            <div class="leaderboard-header">
+                <h2 id="leaderboardTitle">全部游戏排行榜</h2>
+                <div class="leaderboard-stats">
+                    <span id="leaderboardCount">0 人参与</span>
+                </div>
+            </div>
+
+            <!-- 排行榜列表 -->
+            <div class="leaderboard-list" id="leaderboardList">
+                <!-- 排行榜项目将通过JavaScript动态生成 -->
+            </div>
+
+            <!-- 空状态 -->
+            <div class="empty-state hidden" id="emptyState">
+                <div class="empty-icon">📊</div>
+                <h3>暂无数据</h3>
+                <p>该游戏还没有积分记录</p>
+            </div>
+        </div>
+
+        <!-- 游戏详情弹窗 -->
+        <div id="gameDetailModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="gameDetailTitle">游戏详情</h2>
+                    <span class="close" onclick="closeGameDetail()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="game-stats" id="gameStats">
+                        <!-- 游戏统计信息 -->
+                    </div>
+                    <div class="recent-scores" id="recentScores">
+                        <!-- 最近积分记录 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
