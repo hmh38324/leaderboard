@@ -604,17 +604,11 @@ header p {
     }
     
     .game-tab {
-        padding: 8px;
-        font-size: 1.2rem;
+        padding: 5px 8px;
+        font-size: 0.65rem;
         white-space: nowrap;
         flex-shrink: 0;
-        min-width: 40px;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
+        min-width: fit-content;
     }
     
     .leaderboard-container {
@@ -623,64 +617,33 @@ header p {
     
     .leaderboard-item {
         padding: 15px;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .rank-number {
+        font-size: 1.6rem;
+        margin-right: 12px;
+        margin-bottom: 0;
+        min-width: 45px;
+        text-align: center;
+    }
+    
+    .player-info {
+        flex: 1;
+        min-width: 0;
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        position: relative;
+        gap: 3px;
     }
     
-    .leaderboard-item .rank-number {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #667eea;
-        z-index: 1;
-    }
-    
-    .leaderboard-item .player-info {
-        margin-left: 50px;
-        margin-bottom: 5px;
-    }
-    
-    .leaderboard-item .player-name {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin: 0 0 3px 0;
-    }
-    
-    .leaderboard-item .player-id {
-        font-size: 0.85rem;
-        color: #666;
-        margin: 0;
-    }
-    
-    .leaderboard-item .score-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-left: 50px;
-    }
-    
-    .leaderboard-item .total-score {
-        font-size: 1.4rem;
-        font-weight: bold;
-        color: #667eea;
-    }
-    
-    .leaderboard-item .game-scores {
-        display: flex;
-        gap: 5px;
-        flex-wrap: wrap;
-    }
-    
-    .leaderboard-item .game-score {
-        font-size: 0.7rem;
-        padding: 3px 6px;
-        background: rgba(102, 126, 234, 0.1);
-        color: #667eea;
-        border-radius: 8px;
+    .score-info {
+        text-align: right;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        min-width: 70px;
     }
     
     .total-score {
@@ -688,14 +651,14 @@ header p {
     }
     
     .game-scores {
-        justify-content: flex-start;
+        justify-content: flex-end;
         flex-wrap: wrap;
         gap: 3px;
     }
     
     .game-score {
-        font-size: 0.6rem;
-        padding: 2px 4px;
+        font-size: 0.65rem;
+        padding: 2px 5px;
     }
     
     .header-buttons {
@@ -731,47 +694,36 @@ header p {
     }
     
     .game-tab {
-        padding: 6px;
-        font-size: 1rem;
-        width: 35px;
-        height: 35px;
-        min-width: 35px;
+        padding: 4px 6px;
+        font-size: 0.6rem;
     }
     
     .leaderboard-item {
         padding: 12px;
-        gap: 8px;
+        gap: 10px;
     }
     
-    .leaderboard-item .rank-number {
-        font-size: 1.6rem;
-        top: 12px;
-        left: 12px;
+    .rank-number {
+        font-size: 1.4rem;
+        min-width: 35px;
     }
     
-    .leaderboard-item .player-info {
-        margin-left: 45px;
+    .player-name {
+        font-size: 0.95rem;
     }
     
-    .leaderboard-item .player-name {
-        font-size: 1rem;
+    .total-score {
+        font-size: 1.3rem;
     }
     
-    .leaderboard-item .player-id {
-        font-size: 0.8rem;
+    .game-score {
+        font-size: 0.6rem;
+        padding: 2px 4px;
     }
     
-    .leaderboard-item .score-info {
-        margin-left: 45px;
-    }
-    
-    .leaderboard-item .total-score {
-        font-size: 1.2rem;
-    }
-    
-    .leaderboard-item .game-score {
-        font-size: 0.65rem;
-        padding: 2px 5px;
+    .score-info {
+        min-width: 60px;
+        gap: 4px;
     }
 }
 
@@ -783,50 +735,11 @@ header p {
     }
     
     .game-tab {
-        padding: 5px;
-        font-size: 0.9rem;
-        width: 30px;
-        height: 30px;
-        min-width: 30px;
+        padding: 3px 5px;
+        font-size: 0.55rem;
     }
     
     .container {
         padding: 10px;
-    }
-    
-    .leaderboard-item {
-        padding: 10px;
-        gap: 6px;
-    }
-    
-    .leaderboard-item .rank-number {
-        font-size: 1.4rem;
-        top: 10px;
-        left: 10px;
-    }
-    
-    .leaderboard-item .player-info {
-        margin-left: 40px;
-    }
-    
-    .leaderboard-item .player-name {
-        font-size: 0.95rem;
-    }
-    
-    .leaderboard-item .player-id {
-        font-size: 0.75rem;
-    }
-    
-    .leaderboard-item .score-info {
-        margin-left: 40px;
-    }
-    
-    .leaderboard-item .total-score {
-        font-size: 1.1rem;
-    }
-    
-    .leaderboard-item .game-score {
-        font-size: 0.6rem;
-        padding: 2px 4px;
     }
 }
