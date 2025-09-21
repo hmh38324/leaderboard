@@ -215,12 +215,14 @@ function displayLeaderboard(data) {
         
         return `
             <div class="leaderboard-item ${rankClass}" onclick="showPlayerDetail('${player.employeeId}', '${player.employeeName}')">
-                <div class="rank-number">${rank}</div>
-                <div class="player-info">
-                    <h3 class="player-name">${player.employeeName}</h3>
-                    <p class="player-id">工号: ${player.employeeId}</p>
+                <div class="first-row">
+                    <div class="rank-number">${rank}</div>
+                    <div class="player-info">
+                        <h3 class="player-name">${player.employeeName}</h3>
+                        <p class="player-id">工号: ${player.employeeId}</p>
+                    </div>
                 </div>
-                <div class="score-info">
+                <div class="second-row">
                     <div class="total-score">${displayScore}</div>
                     <div class="game-scores">${gameScoresHtml}</div>
                 </div>
