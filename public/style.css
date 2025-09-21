@@ -624,28 +624,31 @@ header p {
     .leaderboard-item {
         padding: 12px;
         display: flex;
-        flex-direction: column;
-        gap: 8px;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
     }
     
     .leaderboard-item .first-row {
         display: flex;
         align-items: center;
         gap: 12px;
+        flex: 1;
     }
     
     .leaderboard-item .second-row {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         gap: 8px;
+        min-width: 80px;
     }
     
     .leaderboard-item .rank-number {
         font-size: 1.4rem;
         margin-right: 0;
         margin-bottom: 0;
-        min-width: 40px;
+        min-width: 35px;
         text-align: center;
     }
     
@@ -664,13 +667,14 @@ header p {
     
     .leaderboard-item .game-scores {
         display: flex;
-        gap: 4px;
+        gap: 3px;
         flex-wrap: wrap;
+        justify-content: flex-end;
     }
     
     .leaderboard-item .game-score {
-        font-size: 0.6rem;
-        padding: 2px 4px;
+        font-size: 0.55rem;
+        padding: 1px 3px;
     }
     
     .total-score {
@@ -730,7 +734,7 @@ header p {
     
     .leaderboard-item {
         padding: 10px;
-        gap: 6px;
+        gap: 8px;
     }
     
     .leaderboard-item .first-row {
@@ -739,11 +743,12 @@ header p {
     
     .leaderboard-item .second-row {
         gap: 6px;
+        min-width: 70px;
     }
     
     .leaderboard-item .rank-number {
         font-size: 1.2rem;
-        min-width: 35px;
+        min-width: 30px;
     }
     
     .leaderboard-item .player-name {
@@ -751,12 +756,12 @@ header p {
     }
     
     .leaderboard-item .total-score {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .leaderboard-item .game-score {
-        font-size: 0.55rem;
-        padding: 1px 3px;
+        font-size: 0.5rem;
+        padding: 1px 2px;
     }
 }
 
