@@ -42,6 +42,7 @@ const arenaLockedToggleEl = document.getElementById('arenaLockedToggle');
 document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     loadLeaderboardData();
+    fetchFlagsAndApply();
 });
 
 // 设置事件监听器
@@ -429,25 +430,20 @@ function verifySettingsPassword() {
     if (val === '1314520') {
         if (settingsAuth) settingsAuth.classList.add('hidden');
         if (settingsPanel) settingsPanel.classList.remove('hidden');
-        // 同步当前锁定状态到开关
-        const trialLocked = localStorage.getItem('trialLocked') === 'true';
-        const arenaLocked = localStorage.getItem('arenaLocked') === 'true';
-        if (trialLockedToggleEl) trialLockedToggleEl.checked = trialLocked;
-        if (arenaLockedToggleEl) arenaLockedToggleEl.checked = arenaLocked;
+        // 同步服务端锁定状态到开关
+        fetchFlagsAndApply();
         showMessage('设置已解锁');
     } else {
         showMessage('密码错误', 'error');
     }
 }
 
-function toggleTrialLocked(locked) {
-    localStorage.setItem('trialLocked', locked ? 'true' : 'false');
-    showMessage(locked ? '试炼场已上锁' : '试炼场已解锁');
+async function toggleTrialLocked(locked) {
+    await updateFlags({ trialLocked: locked });
 }
 
-function toggleArenaLocked(locked) {
-    localStorage.setItem('arenaLocked', locked ? 'true' : 'false');
-    showMessage(locked ? '竞技场已上锁' : '竞技场已解锁');
+async function toggleArenaLocked(locked) {
+    await updateFlags({ arenaLocked: locked });
 }
 
 if (typeof window !== 'undefined') {
@@ -456,4 +452,50 @@ if (typeof window !== 'undefined') {
     window.verifySettingsPassword = verifySettingsPassword;
     window.toggleTrialLocked = toggleTrialLocked;
     window.toggleArenaLocked = toggleArenaLocked;
+}
+
+// 从服务端获取锁状态并应用到界面
+async function fetchFlagsAndApply() {
+    try {
+        const res = await fetch('/api/flags');
+        const json = await res.json();
+        if (json && json.success && json.data) {
+            const { trialLocked, arenaLocked } = json.data;
+            if (trialLockedToggleEl) trialLockedToggleEl.checked = !!trialLocked;
+            if (arenaLockedToggleEl) arenaLockedToggleEl.checked = !!arenaLocked;
+            // 如需根据锁状态隐藏或禁用页面元素，可在此处理
+        }
+    } catch (e) {
+        console.error('获取锁状态失败', e);
+    }
+}
+
+// 更新服务端锁状态
+async function updateFlags(partial) {
+    try {
+        const current = await (async () => {
+            try {
+                const r = await fetch('/api/flags');
+                const j = await r.json();
+                return (j && j.success && j.data) ? j.data : { trialLocked: false, arenaLocked: false };
+            } catch { return { trialLocked: false, arenaLocked: false }; }
+        })();
+        const next = { ...current, ...partial };
+        const res = await fetch('/api/flags', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ ...next, password: '1314520' })
+        });
+        const json = await res.json();
+        if (json && json.success) {
+            if (trialLockedToggleEl) trialLockedToggleEl.checked = !!json.data.trialLocked;
+            if (arenaLockedToggleEl) arenaLockedToggleEl.checked = !!json.data.arenaLocked;
+            showMessage('设置已更新');
+        } else {
+            showMessage('更新失败', 'error');
+        }
+    } catch (e) {
+        console.error('更新锁状态失败', e);
+        showMessage('网络错误，更新失败', 'error');
+    }
 }
