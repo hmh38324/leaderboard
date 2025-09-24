@@ -396,3 +396,8 @@ function exportTotalLeaderboard() {
 
     showMessage('导出成功，已开始下载');
 }
+
+// 兼容某些环境的全局作用域限制
+if (typeof window !== 'undefined') {
+    window.exportTotalLeaderboard = exportTotalLeaderboard;
+}
