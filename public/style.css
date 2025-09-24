@@ -663,15 +663,19 @@ header p {
     }
     
     .header-buttons {
-        flex-direction: column;
+        flex-direction: row; /* 保持一行 */
         gap: 10px;
-        align-items: center;
+        align-items: stretch;
+        justify-content: center;
+        flex-wrap: nowrap; /* 不换行 */
     }
     
     .refresh-btn {
-        width: 100%;
-        max-width: 200px;
+        flex: 1 1 0; /* 两个按钮平分一行宽度 */
+        width: auto;
+        max-width: none;
         justify-content: center;
+        white-space: nowrap; /* 避免按钮文字换行 */
     }
     
     .modal-content {
