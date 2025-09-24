@@ -16,7 +16,7 @@
             <p>四个游戏总分排行榜</p>
             <div class="header-buttons">
                 <button class="refresh-btn" onclick="refreshLeaderboard()">🔄 刷新</button>
-                <button class="refresh-btn" onclick="exportTotalLeaderboard()">📤 导出</button>
+                <button class="refresh-btn" onclick="openSettings()">⚙️ 设置</button>
             </div>
         </header>
 
@@ -98,6 +98,39 @@
                     </div>
                     <div class="recent-scores" id="recentScores">
                         <!-- 最近积分记录 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置弹窗 -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>系统设置</h2>
+                    <span class="close" onclick="closeSettings()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="settingsAuth">
+                        <p style="margin-bottom:10px;color:#666;">请输入设置密码以继续</p>
+                        <input id="settingsPassword" type="password" placeholder="请输入密码" style="width:100%;padding:12px;border:1px solid #e1e5e9;border-radius:10px;outline:none;">
+                        <button class="refresh-btn" style="margin-top:12px;width:100%;justify-content:center;" onclick="verifySettingsPassword()">解锁设置</button>
+                    </div>
+                    <div id="settingsPanel" class="hidden">
+                        <h3 style="margin:10px 0 8px 0;color:#333;">导出</h3>
+                        <button class="refresh-btn" style="width:100%;justify-content:center;" onclick="exportTotalLeaderboard()">📤 导出总排行榜(CSV)</button>
+
+                        <h3 style="margin:18px 0 8px 0;color:#333;">功能开关</h3>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            <label style="display:flex;align-items:center;justify-content:space-between;background:#f8f9fa;border-left:4px solid #667eea;border-radius:10px;padding:12px 14px;">
+                                <span>试炼场上锁</span>
+                                <input type="checkbox" id="trialLockedToggle" onchange="toggleTrialLocked(this.checked)">
+                            </label>
+                            <label style="display:flex;align-items:center;justify-content:space-between;background:#f8f9fa;border-left:4px solid #667eea;border-radius:10px;padding:12px 14px;">
+                                <span>竞技场上锁</span>
+                                <input type="checkbox" id="arenaLockedToggle" onchange="toggleArenaLocked(this.checked)">
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

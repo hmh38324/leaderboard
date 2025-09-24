@@ -30,6 +30,13 @@ const gameDetailModal = document.getElementById('gameDetailModal');
 const gameDetailTitle = document.getElementById('gameDetailTitle');
 const gameStats = document.getElementById('gameStats');
 const recentScores = document.getElementById('recentScores');
+// 设置相关元素
+const settingsModal = document.getElementById('settingsModal');
+const settingsAuth = document.getElementById('settingsAuth');
+const settingsPanel = document.getElementById('settingsPanel');
+const settingsPasswordInput = document.getElementById('settingsPassword');
+const trialLockedToggleEl = document.getElementById('trialLockedToggle');
+const arenaLockedToggleEl = document.getElementById('arenaLockedToggle');
 
 // 初始化
 document.addEventListener('DOMContentLoaded', function() {
@@ -400,4 +407,53 @@ function exportTotalLeaderboard() {
 // 兼容某些环境的全局作用域限制
 if (typeof window !== 'undefined') {
     window.exportTotalLeaderboard = exportTotalLeaderboard;
+}
+
+// 设置面板逻辑
+function openSettings() {
+    // 每次打开都要求输入密码
+    if (settingsAuth) settingsAuth.classList.remove('hidden');
+    if (settingsPanel) settingsPanel.classList.add('hidden');
+    if (settingsPasswordInput) settingsPasswordInput.value = '';
+    if (settingsModal) settingsModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSettings() {
+    if (settingsModal) settingsModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function verifySettingsPassword() {
+    const val = (settingsPasswordInput && settingsPasswordInput.value) || '';
+    if (val === '1314520') {
+        if (settingsAuth) settingsAuth.classList.add('hidden');
+        if (settingsPanel) settingsPanel.classList.remove('hidden');
+        // 同步当前锁定状态到开关
+        const trialLocked = localStorage.getItem('trialLocked') === 'true';
+        const arenaLocked = localStorage.getItem('arenaLocked') === 'true';
+        if (trialLockedToggleEl) trialLockedToggleEl.checked = trialLocked;
+        if (arenaLockedToggleEl) arenaLockedToggleEl.checked = arenaLocked;
+        showMessage('设置已解锁');
+    } else {
+        showMessage('密码错误', 'error');
+    }
+}
+
+function toggleTrialLocked(locked) {
+    localStorage.setItem('trialLocked', locked ? 'true' : 'false');
+    showMessage(locked ? '试炼场已上锁' : '试炼场已解锁');
+}
+
+function toggleArenaLocked(locked) {
+    localStorage.setItem('arenaLocked', locked ? 'true' : 'false');
+    showMessage(locked ? '竞技场已上锁' : '竞技场已解锁');
+}
+
+if (typeof window !== 'undefined') {
+    window.openSettings = openSettings;
+    window.closeSettings = closeSettings;
+    window.verifySettingsPassword = verifySettingsPassword;
+    window.toggleTrialLocked = toggleTrialLocked;
+    window.toggleArenaLocked = toggleArenaLocked;
 }
