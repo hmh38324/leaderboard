@@ -327,3 +327,72 @@ setInterval(() => {
         loadLeaderboardData();
     }
 }, 30000);
+
+// 导出总排行榜（CSV）
+function exportTotalLeaderboard() {
+    const password = prompt('请输入导出密码');
+    if (password === null) {
+        return;
+    }
+    if (password !== '1314520') {
+        showMessage('密码错误，无法导出', 'error');
+        return;
+    }
+
+    if (!leaderboardData || leaderboardData.length === 0) {
+        showMessage('暂无数据可导出', 'error');
+        return;
+    }
+
+    // 构建表头
+    const headers = ['排名', '工号', '姓名', '总分', '拼速达人', '碰碰乐', '沙包投掷', '巧手取棒', '最后游戏时间'];
+
+    // 确保以总分排序（与总榜一致）
+    const data = [...leaderboardData].sort((a, b) => {
+        if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
+        return b.lastPlayTime - a.lastPlayTime;
+    });
+
+    // 转换为CSV
+    const rows = data.map((player, index) => {
+        const game1 = player.gameScores[1] || 0;
+        const game2 = player.gameScores[2] || 0;
+        const game3 = player.gameScores[3] || 0;
+        const game4 = player.gameScores[4] || 0;
+        const time = player.lastPlayTime ? new Date(player.lastPlayTime).toLocaleString('zh-CN') : '';
+        const row = [
+            index + 1,
+            player.employeeId,
+            player.employeeName,
+            player.totalScore,
+            game1,
+            game2,
+            game3,
+            game4,
+            time
+        ];
+        return row.map(v => {
+            const s = String(v).replace(/"/g, '""');
+            if (/[",\n]/.test(s)) {
+                return `"${s}` + '"';
+            }
+            return s;
+        }).join(',');
+    });
+
+    const csvContent = ['\ufeff' + headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    const ts = new Date();
+    const tsStr = `${ts.getFullYear()}-${String(ts.getMonth() + 1).padStart(2, '0')}-${String(ts.getDate()).padStart(2, '0')}_${String(ts.getHours()).padStart(2, '0')}${String(ts.getMinutes()).padStart(2, '0')}`;
+    a.href = url;
+    a.download = `总排行榜_${tsStr}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showMessage('导出成功，已开始下载');
+}
